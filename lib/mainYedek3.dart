@@ -25,10 +25,11 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   List<int> list = [];
   List<int> listRandomSelected = [];
+  List<String> listOutOfGame = [];
+
   int listNumber = 0;
   int listNumberSelected = 0;
   int count = 0;
-
   String title = 'GridViewBuilder';
   var random = new Random();
   bool initial1 = true;
@@ -77,15 +78,29 @@ class _MyHomePageState extends State<MyHomePage> {
   Color color4 = Colors.lightGreen;
   Color color5 = Colors.lightGreen;
 
-  int cardSelected1=0;
-  int cardSelected2=0;
+  int cardSelected1 = 0;
+  int cardSelected2 = 0;
 
-  int cardContol0=0;
-  int cardContol1=0;
-  int cardContol2=0;
-  int cardContol3=0;
-  int cardContol4=0;
-  int cardContol5=0;
+  int cardContol0 = 0;
+  int cardContol1 = 0;
+  int cardContol2 = 0;
+  int cardContol3 = 0;
+  int cardContol4 = 0;
+  int cardContol5 = 0;
+
+  bool outOfGame0 = false;
+  bool outOfGame1 = false;
+  bool outOfGame2 = false;
+  bool outOfGame3 = false;
+  bool outOfGame4 = false;
+  bool outOfGame5 = false;
+
+  String cardName0 = 'card0';
+  String cardName1 = 'card1';
+  String cardName2 = 'card2';
+  String cardName3 = 'card3';
+  String cardName4 = 'card4';
+  String cardName5 = 'card5';
 
   listRandom() {
     for (int i = 1; i <= 3; i++) {
@@ -143,49 +158,131 @@ class _MyHomePageState extends State<MyHomePage> {
                       style: ElevatedButton.styleFrom(primary: color0),
                       onPressed: () {
                         setState(() {
-                          if (pressCountSum < 2 || pressCount0 == 1) {
-                            changed0 = !changed0;
-                          }
-                          if (changed0 == true) {
-                            if (pressCountSum < 2 ||
-                                pressCountSum >= 0 ||
-                                pressCount0 == 1) {
-                              label0 = '';
-                              color0 = Colors.lightGreen;
-                              if(cardContol0==1){
-                                cardSelected1=0;
-                              }
-                              else if(cardContol0==2){
-                                cardSelected2=0;
-                              }
-                              if (pressCount0 == 1) {
-                                pressCount0 = pressCount0 - 1;
-                                pressCountSum = pressCountSum - 1;
-                              }
+                          if (outOfGame0 == false) {
+                            if (pressCountSum < 2 || pressCount0 == 1) {
+                              changed0 = !changed0;
                             }
-                          } else {
-                            if (pressCountSum < 2) {
-                              label0 = listRandomSelected[0].toString();
-                              color0 = Colors.deepPurpleAccent;
-                              pressCount0 = pressCount0 + 1;
-                              pressCountSum = pressCountSum + 1;
-                              if(pressCountSum==1){
-                                cardSelected1=listRandomSelected[0];
-                                cardContol0=1;
+                            if (changed0 == true) {
+                              if (pressCountSum < 2 ||
+                                  pressCountSum >= 0 ||
+                                  pressCount0 == 1) {
+                                label0 = '';
+                                color0 = Colors.lightGreen;
+                                if (cardContol0 == 1) {
+                                  cardSelected1 = 0;
+                                } else if (cardContol0 == 2) {
+                                  cardSelected2 = 0;
+                                }
+                                if (pressCount0 == 1) {
+                                  pressCount0 = pressCount0 - 1;
+                                  pressCountSum = pressCountSum - 1;
+                                }
                               }
-                              else if(pressCountSum==2){
-                                cardSelected2=listRandomSelected[0];
-                                cardContol0=2;
-                                if(cardSelected2==cardSelected1){
-                                  print('Same!!!!');
+                            } else {
+                              if (pressCountSum < 2) {
+                                label0 = listRandomSelected[0].toString();
+                                color0 = Colors.deepPurpleAccent;
+                                pressCount0 = pressCount0 + 1;
+                                pressCountSum = pressCountSum + 1;
+                                listOutOfGame.add(cardName0);
+                                if (pressCountSum == 1) {
+                                  cardSelected1 = listRandomSelected[0];
+                                  cardContol0 = 1;
+                                } else if (pressCountSum == 2) {
+                                  cardSelected2 = listRandomSelected[0];
+                                  cardContol0 = 2;
+                                  if (cardSelected2 == cardSelected1) {
+                                    print('Same!!!!');
+                                    String name1=listOutOfGame.last;
+                                    String name2=listOutOfGame.first;
+                                    switch(name1) {
+                                      case 'card0':{
+                                        print('card0 : $name1');
+                                        outOfGame0=true;
+                                      }
+                                      break;
+                                      case 'card1':{
+                                        print('card1 : $name1');
+                                        outOfGame1=true;
+                                      }
+                                      break;
+                                      case 'card2':{
+                                        print('card2 : $name1');
+                                        outOfGame2=true;
+                                      }
+                                      break;
+                                      case 'card3':{
+                                        print('card3 : $name1');
+                                        outOfGame3=true;
+                                      }
+                                      break;
+                                      case 'card4':{
+                                        print('card4 : $name1');
+                                        outOfGame4=true;
+                                      }
+                                      break;
+                                      case 'card5':{
+                                        print('card5 : $name1');
+                                        outOfGame5=true;
+                                      }
+                                      break;
+                                      defaullt:{
+                                        print('not value');
+                                      }
+                                      break;
+                                    }
+                                    switch(name2) {
+                                      case 'card0':{
+                                        print('card0 : $name2');
+                                        outOfGame0=true;
+                                      }
+                                      break;
+                                      case 'card1':{
+                                        print('card1 : $name2');
+                                        outOfGame1=true;
+                                      }
+                                      break;
+                                      case 'card2':{
+                                        print('card2 : $name2');
+                                        outOfGame2=true;
+                                      }
+                                      break;
+                                      case 'card3':{
+                                        print('card3 : $name2');
+                                        outOfGame3=true;
+                                      }
+                                      break;
+                                      case 'card4':{
+                                        print('card4 : $name2');
+                                        outOfGame4=true;
+                                      }
+                                      break;
+                                      case 'card5':{
+                                        print('card5 : $name2');
+                                        outOfGame5=true;
+                                      }
+                                      break;
+                                      defaullt:{
+                                        print('not value');
+                                      }
+                                      break;
+                                    }
+                                  }else{
+                                    print('not Same');
+                                    listOutOfGame.removeLast();
+                                    print(listOutOfGame);
+                                    listOutOfGame.removeLast();
+                                    print(listOutOfGame);
+                                  }
                                 }
                               }
                             }
+                            //print('pressCount0 :$pressCount0');
+                            //print('pressCountSum : $pressCountSum');
+                            //print('changed0 : $changed0');
+                            print('cardContol0 : $cardContol0');
+                            print('listOutOfGame : $listOutOfGame');
                           }
-                          print('pressCount0 :$pressCount0');
-                          print('pressCountSum : $pressCountSum');
-                          print('changed0 : $changed0');
-                          print('cardContol0 : $cardContol0');
                         });
                       },
                       child: Text(
@@ -202,49 +299,131 @@ class _MyHomePageState extends State<MyHomePage> {
                       style: ElevatedButton.styleFrom(primary: color1),
                       onPressed: () {
                         setState(() {
-                          if (pressCountSum < 2 || pressCount1 == 1) {
-                            changed1 = !changed1;
-                          }
-                          if (changed1 == true) {
-                            if (pressCountSum < 2 ||
-                                pressCountSum >= 0 ||
-                                pressCount1 == 1) {
-                              label1 = '';
-                              color1 = Colors.lightGreen;
-                              if(cardContol1==1){
-                                cardSelected1=0;
-                              }
-                              else if(cardContol1==2){
-                                cardSelected2=0;
-                              }
-                              if (pressCount1 == 1) {
-                                pressCount1 = pressCount1 - 1;
-                                pressCountSum = pressCountSum - 1;
-                              }
+                          if (outOfGame1 == false) {
+                            if (pressCountSum < 2 || pressCount1 == 1) {
+                              changed1 = !changed1;
                             }
-                          } else {
-                            if (pressCountSum < 2) {
-                              label1 = listRandomSelected[1].toString();
-                              color1 = Colors.deepPurpleAccent;
-                              pressCount1 = pressCount1 + 1;
-                              pressCountSum = pressCountSum + 1;
-                              if(pressCountSum==1){
-                                cardSelected1=listRandomSelected[1];
-                                cardContol1=1;
+                            if (changed1 == true) {
+                              if (pressCountSum < 2 ||
+                                  pressCountSum >= 0 ||
+                                  pressCount1 == 1) {
+                                label1 = '';
+                                color1 = Colors.lightGreen;
+                                if (cardContol1 == 1) {
+                                  cardSelected1 = 0;
+                                } else if (cardContol1 == 2) {
+                                  cardSelected2 = 0;
+                                }
+                                if (pressCount1 == 1) {
+                                  pressCount1 = pressCount1 - 1;
+                                  pressCountSum = pressCountSum - 1;
+                                }
                               }
-                              else if(pressCountSum==2){
-                                cardSelected2=listRandomSelected[1];
-                                cardContol1=2;
-                                if(cardSelected2==cardSelected1){
-                                  print('Same!!!!');
+                            } else {
+                              if (pressCountSum < 2) {
+                                label1 = listRandomSelected[1].toString();
+                                color1 = Colors.deepPurpleAccent;
+                                pressCount1 = pressCount1 + 1;
+                                pressCountSum = pressCountSum + 1;
+                                listOutOfGame.add(cardName1);
+                                if (pressCountSum == 1) {
+                                  cardSelected1 = listRandomSelected[1];
+                                  cardContol1 = 1;
+                                } else if (pressCountSum == 2) {
+                                  cardSelected2 = listRandomSelected[1];
+                                  cardContol1 = 2;
+                                  if (cardSelected2 == cardSelected1) {
+                                    print('Same!!!!');
+                                    String name1=listOutOfGame.last;
+                                    String name2=listOutOfGame.first;
+                                    switch(name1) {
+                                      case 'card0':{
+                                        print('card0 : $name1');
+                                        outOfGame0=true;
+                                      }
+                                      break;
+                                      case 'card1':{
+                                        print('card1 : $name1');
+                                        outOfGame1=true;
+                                      }
+                                      break;
+                                      case 'card2':{
+                                        print('card2 : $name1');
+                                        outOfGame2=true;
+                                      }
+                                      break;
+                                      case 'card3':{
+                                        print('card3 : $name1');
+                                        outOfGame3=true;
+                                      }
+                                      break;
+                                      case 'card4':{
+                                        print('card4 : $name1');
+                                        outOfGame4=true;
+                                      }
+                                      break;
+                                      case 'card5':{
+                                        print('card5 : $name1');
+                                        outOfGame5=true;
+                                      }
+                                      break;
+                                      defaullt:{
+                                        print('not value');
+                                      }
+                                      break;
+                                    }
+                                    switch(name2) {
+                                      case 'card0':{
+                                        print('card0 : $name2');
+                                        outOfGame0=true;
+                                      }
+                                      break;
+                                      case 'card1':{
+                                        print('card1 : $name2');
+                                        outOfGame1=true;
+                                      }
+                                      break;
+                                      case 'card2':{
+                                        print('card2 : $name2');
+                                        outOfGame2=true;
+                                      }
+                                      break;
+                                      case 'card3':{
+                                        print('card3 : $name2');
+                                        outOfGame3=true;
+                                      }
+                                      break;
+                                      case 'card4':{
+                                        print('card4 : $name2');
+                                        outOfGame4=true;
+                                      }
+                                      break;
+                                      case 'card5':{
+                                        print('card5 : $name2');
+                                        outOfGame5=true;
+                                      }
+                                      break;
+                                      defaullt:{
+                                        print('not value');
+                                      }
+                                      break;
+                                    }
+                                  }else{
+                                    print('not Same');
+                                    listOutOfGame.removeLast();
+                                    print(listOutOfGame);
+                                    listOutOfGame.removeLast();
+                                    print(listOutOfGame);
+                                  }
                                 }
                               }
                             }
+                            //print('pressCount1 :$pressCount1');
+                            //print('pressCountSum : $pressCountSum');
+                            //print('changed1 : $changed1');
+                            print('cardContol1 : $cardContol1');
+                            print('listOutOfGame : $listOutOfGame');
                           }
-                          print('pressCount1 :$pressCount1');
-                          print('pressCountSum : $pressCountSum');
-                          print('changed1 : $changed1');
-                          print('cardContol1 : $cardContol1');
                         });
                       },
                       child: Text(label1, style: textStyle),
@@ -258,49 +437,131 @@ class _MyHomePageState extends State<MyHomePage> {
                       style: ElevatedButton.styleFrom(primary: color2),
                       onPressed: () {
                         setState(() {
-                          if (pressCountSum < 2 || pressCount2 == 1) {
-                            changed2 = !changed2;
-                          }
-                          if (changed2 == true) {
-                            if (pressCountSum < 2 ||
-                                pressCountSum >= 0 ||
-                                pressCount2 == 1) {
-                              label2 = '';
-                              color2 = Colors.lightGreen;
-                              if(cardContol2==1){
-                                cardSelected1=0;
-                              }
-                              else if(cardContol2==2){
-                                cardSelected2=0;
-                              }
-                              if (pressCount2 == 1) {
-                                pressCount2 = pressCount2 - 1;
-                                pressCountSum = pressCountSum - 1;
-                              }
+                          if (outOfGame2 == false) {
+                            if (pressCountSum < 2 || pressCount2 == 1) {
+                              changed2 = !changed2;
                             }
-                          } else {
-                            if (pressCountSum < 2) {
-                              label2 = listRandomSelected[2].toString();
-                              color2 = Colors.deepPurpleAccent;
-                              pressCount2 = pressCount2 + 1;
-                              pressCountSum = pressCountSum + 1;
-                              if(pressCountSum==1){
-                                cardSelected1=listRandomSelected[2];
-                                cardContol2=1;
+                            if (changed2 == true) {
+                              if (pressCountSum < 2 ||
+                                  pressCountSum >= 0 ||
+                                  pressCount2 == 1) {
+                                label2 = '';
+                                color2 = Colors.lightGreen;
+                                if (cardContol2 == 1) {
+                                  cardSelected1 = 0;
+                                } else if (cardContol2 == 2) {
+                                  cardSelected2 = 0;
+                                }
+                                if (pressCount2 == 1) {
+                                  pressCount2 = pressCount2 - 1;
+                                  pressCountSum = pressCountSum - 1;
+                                }
                               }
-                              else if(pressCountSum==2){
-                                cardSelected2=listRandomSelected[2];
-                                cardContol2=2;
-                                if(cardSelected2==cardSelected1){
-                                  print('Same!!!!');
+                            } else {
+                              if (pressCountSum < 2) {
+                                label2 = listRandomSelected[2].toString();
+                                color2 = Colors.deepPurpleAccent;
+                                pressCount2 = pressCount2 + 1;
+                                pressCountSum = pressCountSum + 1;
+                                listOutOfGame.add(cardName2);
+                                if (pressCountSum == 1) {
+                                  cardSelected1 = listRandomSelected[2];
+                                  cardContol2 = 1;
+                                } else if (pressCountSum == 2) {
+                                  cardSelected2 = listRandomSelected[2];
+                                  cardContol2 = 2;
+                                  if (cardSelected2 == cardSelected1) {
+                                    print('Same!!!!');
+                                    String name1=listOutOfGame.last;
+                                    String name2=listOutOfGame.first;
+                                    switch(name1) {
+                                      case 'card0':{
+                                        print('card0 : $name1');
+                                        outOfGame0=true;
+                                      }
+                                      break;
+                                      case 'card1':{
+                                        print('card1 : $name1');
+                                        outOfGame1=true;
+                                      }
+                                      break;
+                                      case 'card2':{
+                                        print('card2 : $name1');
+                                        outOfGame2=true;
+                                      }
+                                      break;
+                                      case 'card3':{
+                                        print('card3 : $name1');
+                                        outOfGame3=true;
+                                      }
+                                      break;
+                                      case 'card4':{
+                                        print('card4 : $name1');
+                                        outOfGame4=true;
+                                      }
+                                      break;
+                                      case 'card5':{
+                                        print('card5 : $name1');
+                                        outOfGame5=true;
+                                      }
+                                      break;
+                                      defaullt:{
+                                        print('not value');
+                                      }
+                                      break;
+                                    }
+                                    switch(name2) {
+                                      case 'card0':{
+                                        print('card0 : $name2');
+                                        outOfGame0=true;
+                                      }
+                                      break;
+                                      case 'card1':{
+                                        print('card1 : $name2');
+                                        outOfGame1=true;
+                                      }
+                                      break;
+                                      case 'card2':{
+                                        print('card2 : $name2');
+                                        outOfGame2=true;
+                                      }
+                                      break;
+                                      case 'card3':{
+                                        print('card3 : $name2');
+                                        outOfGame3=true;
+                                      }
+                                      break;
+                                      case 'card4':{
+                                        print('card4 : $name2');
+                                        outOfGame4=true;
+                                      }
+                                      break;
+                                      case 'card5':{
+                                        print('card5 : $name2');
+                                        outOfGame5=true;
+                                      }
+                                      break;
+                                      defaullt:{
+                                        print('not value');
+                                      }
+                                      break;
+                                    }
+                                  }else{
+                                    print('not Same');
+                                    listOutOfGame.removeLast();
+                                    print(listOutOfGame);
+                                    listOutOfGame.removeLast();
+                                    print(listOutOfGame);
+                                  }
                                 }
                               }
                             }
+                            //print('pressCount2 :$pressCount2');
+                            //print('pressCountSum : $pressCountSum');
+                            //print('changed2 : $changed2');
+                            print('cardContol2 : $cardContol2');
+                            print('listOutOfGame : $listOutOfGame');
                           }
-                          print('pressCount2 :$pressCount2');
-                          print('pressCountSum : $pressCountSum');
-                          print('changed2 : $changed2');
-                          print('cardContol2 : $cardContol2');
                         });
                       },
                       child: Text(label2, style: textStyle),
@@ -314,49 +575,131 @@ class _MyHomePageState extends State<MyHomePage> {
                       style: ElevatedButton.styleFrom(primary: color3),
                       onPressed: () {
                         setState(() {
-                          if (pressCountSum < 2 || pressCount3 == 1) {
-                            changed3 = !changed3;
-                          }
-                          if (changed3 == true) {
-                            if (pressCountSum < 2 ||
-                                pressCountSum >= 0 ||
-                                pressCount3 == 1) {
-                              label3 = '';
-                              color3 = Colors.lightGreen;
-                              if(cardContol3==1){
-                                cardSelected1=0;
-                              }
-                              else if(cardContol3==2){
-                                cardSelected2=0;
-                              }
-                              if (pressCount3 == 1) {
-                                pressCount3 = pressCount3 - 1;
-                                pressCountSum = pressCountSum - 1;
-                              }
+                          if (outOfGame3 == false) {
+                            if (pressCountSum < 2 || pressCount3 == 1) {
+                              changed3 = !changed3;
                             }
-                          } else {
-                            if (pressCountSum < 2) {
-                              label3 = listRandomSelected[3].toString();
-                              color3 = Colors.deepPurpleAccent;
-                              pressCount3 = pressCount3 + 1;
-                              pressCountSum = pressCountSum + 1;
-                              if(pressCountSum==1){
-                                cardSelected1=listRandomSelected[3];
-                                cardContol3=1;
+                            if (changed3 == true) {
+                              if (pressCountSum < 2 ||
+                                  pressCountSum >= 0 ||
+                                  pressCount3 == 1) {
+                                label3 = '';
+                                color3 = Colors.lightGreen;
+                                if (cardContol3 == 1) {
+                                  cardSelected1 = 0;
+                                } else if (cardContol3 == 2) {
+                                  cardSelected2 = 0;
+                                }
+                                if (pressCount3 == 1) {
+                                  pressCount3 = pressCount3 - 1;
+                                  pressCountSum = pressCountSum - 1;
+                                }
                               }
-                              else if(pressCountSum==2){
-                                cardSelected2=listRandomSelected[3];
-                                cardContol3=2;
-                                if(cardSelected2==cardSelected1){
-                                  print('Same!!!!');
+                            } else {
+                              if (pressCountSum < 2) {
+                                label3 = listRandomSelected[3].toString();
+                                color3 = Colors.deepPurpleAccent;
+                                pressCount3 = pressCount3 + 1;
+                                pressCountSum = pressCountSum + 1;
+                                listOutOfGame.add(cardName3);
+                                if (pressCountSum == 1) {
+                                  cardSelected1 = listRandomSelected[3];
+                                  cardContol3 = 1;
+                                } else if (pressCountSum == 2) {
+                                  cardSelected2 = listRandomSelected[3];
+                                  cardContol3 = 2;
+                                  if (cardSelected2 == cardSelected1) {
+                                    print('Same!!!!');
+                                    String name1=listOutOfGame.last;
+                                    String name2=listOutOfGame.first;
+                                    switch(name1) {
+                                      case 'card0':{
+                                        print('card0 : $name1');
+                                        outOfGame0=true;
+                                      }
+                                      break;
+                                      case 'card1':{
+                                        print('card1 : $name1');
+                                        outOfGame1=true;
+                                      }
+                                      break;
+                                      case 'card2':{
+                                        print('card2 : $name1');
+                                        outOfGame2=true;
+                                      }
+                                      break;
+                                      case 'card3':{
+                                        print('card3 : $name1');
+                                        outOfGame3=true;
+                                      }
+                                      break;
+                                      case 'card4':{
+                                        print('card4 : $name1');
+                                        outOfGame4=true;
+                                      }
+                                      break;
+                                      case 'card5':{
+                                        print('card5 : $name1');
+                                        outOfGame5=true;
+                                      }
+                                      break;
+                                      defaullt:{
+                                        print('not value');
+                                      }
+                                      break;
+                                    }
+                                    switch(name2) {
+                                      case 'card0':{
+                                        print('card0 : $name2');
+                                        outOfGame0=true;
+                                      }
+                                      break;
+                                      case 'card1':{
+                                        print('card1 : $name2');
+                                        outOfGame1=true;
+                                      }
+                                      break;
+                                      case 'card2':{
+                                        print('card2 : $name2');
+                                        outOfGame2=true;
+                                      }
+                                      break;
+                                      case 'card3':{
+                                        print('card3 : $name2');
+                                        outOfGame3=true;
+                                      }
+                                      break;
+                                      case 'card4':{
+                                        print('card4 : $name2');
+                                        outOfGame4=true;
+                                      }
+                                      break;
+                                      case 'card5':{
+                                        print('card5 : $name2');
+                                        outOfGame5=true;
+                                      }
+                                      break;
+                                      defaullt:{
+                                        print('not value');
+                                      }
+                                      break;
+                                    }
+                                  }else{
+                                    print('not Same');
+                                    listOutOfGame.removeLast();
+                                    print(listOutOfGame);
+                                    listOutOfGame.removeLast();
+                                    print(listOutOfGame);
+                                  }
                                 }
                               }
                             }
+                            //print('pressCount3 :$pressCount3');
+                            //print('pressCountSum : $pressCountSum');
+                            //print('changed3 : $changed3');
+                            print('cardContol3 : $cardContol3');
+                            print('listOutOfGame : $listOutOfGame');
                           }
-                          print('pressCount3 :$pressCount3');
-                          print('pressCountSum : $pressCountSum');
-                          print('changed3 : $changed3');
-                          print('cardContol3 : $cardContol3');
                         });
                       },
                       child: Text(label3, style: textStyle),
@@ -370,49 +713,131 @@ class _MyHomePageState extends State<MyHomePage> {
                       style: ElevatedButton.styleFrom(primary: color4),
                       onPressed: () {
                         setState(() {
-                          if (pressCountSum < 2 || pressCount4 == 1) {
-                            changed4 = !changed4;
-                          }
-                          if (changed4 == true) {
-                            if (pressCountSum < 2 ||
-                                pressCountSum >= 0 ||
-                                pressCount4 == 1) {
-                              label4 = '';
-                              color4 = Colors.lightGreen;
-                              if(cardContol4==1){
-                                cardSelected1=0;
-                              }
-                              else if(cardContol4==2){
-                                cardSelected2=0;
-                              }
-                              if (pressCount4 == 1) {
-                                pressCount4 = pressCount4 - 1;
-                                pressCountSum = pressCountSum - 1;
-                              }
+                          if (outOfGame4 == false) {
+                            if (pressCountSum < 2 || pressCount4 == 1) {
+                              changed4 = !changed4;
                             }
-                          } else {
-                            if (pressCountSum < 2) {
-                              label4 = listRandomSelected[4].toString();
-                              color4 = Colors.deepPurpleAccent;
-                              pressCount4 = pressCount4 + 1;
-                              pressCountSum = pressCountSum + 1;
-                              if(pressCountSum==1){
-                                cardSelected1=listRandomSelected[4];
-                                cardContol4=1;
+                            if (changed4 == true) {
+                              if (pressCountSum < 2 ||
+                                  pressCountSum >= 0 ||
+                                  pressCount4 == 1) {
+                                label4 = '';
+                                color4 = Colors.lightGreen;
+                                if (cardContol4 == 1) {
+                                  cardSelected1 = 0;
+                                } else if (cardContol4 == 2) {
+                                  cardSelected2 = 0;
+                                }
+                                if (pressCount4 == 1) {
+                                  pressCount4 = pressCount4 - 1;
+                                  pressCountSum = pressCountSum - 1;
+                                }
                               }
-                              else if(pressCountSum==2){
-                                cardSelected2=listRandomSelected[4];
-                                cardContol4=2;
-                                if(cardSelected2==cardSelected1){
-                                  print('Same!!!!');
+                            } else {
+                              if (pressCountSum < 2) {
+                                label4 = listRandomSelected[4].toString();
+                                color4 = Colors.deepPurpleAccent;
+                                pressCount4 = pressCount4 + 1;
+                                pressCountSum = pressCountSum + 1;
+                                listOutOfGame.add(cardName4);
+                                if (pressCountSum == 1) {
+                                  cardSelected1 = listRandomSelected[4];
+                                  cardContol4 = 1;
+                                } else if (pressCountSum == 2) {
+                                  cardSelected2 = listRandomSelected[4];
+                                  cardContol4 = 2;
+                                  if (cardSelected2 == cardSelected1) {
+                                    print('Same!!!!');
+                                    String name1=listOutOfGame.last;
+                                    String name2=listOutOfGame.first;
+                                    switch(name1) {
+                                      case 'card0':{
+                                        print('card0 : $name1');
+                                        outOfGame0=true;
+                                      }
+                                      break;
+                                      case 'card1':{
+                                        print('card1 : $name1');
+                                        outOfGame1=true;
+                                      }
+                                      break;
+                                      case 'card2':{
+                                        print('card2 : $name1');
+                                        outOfGame2=true;
+                                      }
+                                      break;
+                                      case 'card3':{
+                                        print('card3 : $name1');
+                                        outOfGame3=true;
+                                      }
+                                      break;
+                                      case 'card4':{
+                                        print('card4 : $name1');
+                                        outOfGame4=true;
+                                      }
+                                      break;
+                                      case 'card5':{
+                                        print('card5 : $name1');
+                                        outOfGame5=true;
+                                      }
+                                      break;
+                                      defaullt:{
+                                        print('not value');
+                                      }
+                                      break;
+                                    }
+                                    switch(name2) {
+                                      case 'card0':{
+                                        print('card0 : $name2');
+                                        outOfGame0=true;
+                                      }
+                                      break;
+                                      case 'card1':{
+                                        print('card1 : $name2');
+                                        outOfGame1=true;
+                                      }
+                                      break;
+                                      case 'card2':{
+                                        print('card2 : $name2');
+                                        outOfGame2=true;
+                                      }
+                                      break;
+                                      case 'card3':{
+                                        print('card3 : $name2');
+                                        outOfGame3=true;
+                                      }
+                                      break;
+                                      case 'card4':{
+                                        print('card4 : $name2');
+                                        outOfGame4=true;
+                                      }
+                                      break;
+                                      case 'card5':{
+                                        print('card5 : $name2');
+                                        outOfGame5=true;
+                                      }
+                                      break;
+                                      defaullt:{
+                                        print('not value');
+                                      }
+                                      break;
+                                    }
+                                  }else{
+                                    print('not Same');
+                                    listOutOfGame.removeLast();
+                                    print(listOutOfGame);
+                                    listOutOfGame.removeLast();
+                                    print(listOutOfGame);
+                                  }
                                 }
                               }
                             }
+                            //print('pressCount4 :$pressCount4');
+                            //print('pressCountSum : $pressCountSum');
+                            //print('changed4 : $changed4');
+                            print('cardContol4 : $cardContol4');
+                            print('listOutOfGame : $listOutOfGame');
                           }
-                          print('pressCount4 :$pressCount4');
-                          print('pressCountSum : $pressCountSum');
-                          print('changed4 : $changed4');
-                          print('cardContol4 : $cardContol4');
                         });
                       },
                       child: Text(label4, style: textStyle),
@@ -426,49 +851,131 @@ class _MyHomePageState extends State<MyHomePage> {
                       style: ElevatedButton.styleFrom(primary: color5),
                       onPressed: () {
                         setState(() {
-                          if (pressCountSum < 2 || pressCount5 == 1) {
-                            changed5 = !changed5;
-                          }
-                          if (changed5 == true) {
-                            if (pressCountSum < 2 ||
-                                pressCountSum >= 0 ||
-                                pressCount5 == 1) {
-                              label5 = '';
-                              color5 = Colors.lightGreen;
-                              if(cardContol5==1){
-                                cardSelected1=0;
-                              }
-                              else if(cardContol5==2){
-                                cardSelected2=0;
-                              }
-                              if (pressCount5 == 1) {
-                                pressCount5 = pressCount5 - 1;
-                                pressCountSum = pressCountSum - 1;
-                              }
+                          if (outOfGame5 == false) {
+                            if (pressCountSum < 2 || pressCount5 == 1) {
+                              changed5 = !changed5;
                             }
-                          } else {
-                            if (pressCountSum < 2) {
-                              label5 = listRandomSelected[0].toString();
-                              color5 = Colors.deepPurpleAccent;
-                              pressCount5 = pressCount5 + 1;
-                              pressCountSum = pressCountSum + 1;
-                              if(pressCountSum==1){
-                                cardSelected1=listRandomSelected[5];
-                                cardContol5=1;
+                            if (changed5 == true) {
+                              if (pressCountSum < 2 ||
+                                  pressCountSum >= 0 ||
+                                  pressCount5 == 1) {
+                                label5 = '';
+                                color5 = Colors.lightGreen;
+                                if (cardContol5 == 1) {
+                                  cardSelected1 = 0;
+                                } else if (cardContol5 == 2) {
+                                  cardSelected2 = 0;
+                                }
+                                if (pressCount5 == 1) {
+                                  pressCount5 = pressCount5 - 1;
+                                  pressCountSum = pressCountSum - 1;
+                                }
                               }
-                              else if(pressCountSum==2){
-                                cardSelected2=listRandomSelected[5];
-                                cardContol5=2;
-                                if(cardSelected2==cardSelected1){
-                                  print('Same!!!!');
+                            } else {
+                              if (pressCountSum < 2) {
+                                label5 = listRandomSelected[5].toString();
+                                color5 = Colors.deepPurpleAccent;
+                                pressCount5 = pressCount5 + 1;
+                                pressCountSum = pressCountSum + 1;
+                                listOutOfGame.add(cardName5);
+                                if (pressCountSum == 1) {
+                                  cardSelected1 = listRandomSelected[5];
+                                  cardContol5 = 1;
+                                } else if (pressCountSum == 2) {
+                                  cardSelected2 = listRandomSelected[5];
+                                  cardContol5 = 2;
+                                  if (cardSelected2 == cardSelected1) {
+                                    print('Same!!!!');
+                                    String name1=listOutOfGame.last;
+                                    String name2=listOutOfGame.first;
+                                    switch(name1) {
+                                      case 'card0':{
+                                        print('card0 : $name1');
+                                        outOfGame0=true;
+                                      }
+                                      break;
+                                      case 'card1':{
+                                        print('card1 : $name1');
+                                        outOfGame1=true;
+                                      }
+                                      break;
+                                      case 'card2':{
+                                        print('card2 : $name1');
+                                        outOfGame2=true;
+                                      }
+                                      break;
+                                      case 'card3':{
+                                        print('card3 : $name1');
+                                        outOfGame3=true;
+                                      }
+                                      break;
+                                      case 'card4':{
+                                        print('card4 : $name1');
+                                        outOfGame4=true;
+                                      }
+                                      break;
+                                      case 'card5':{
+                                        print('card5 : $name1');
+                                        outOfGame5=true;
+                                      }
+                                      break;
+                                      defaullt:{
+                                        print('not value');
+                                      }
+                                      break;
+                                    }
+                                    switch(name2) {
+                                      case 'card0':{
+                                        print('card0 : $name2');
+                                        outOfGame0=true;
+                                      }
+                                      break;
+                                      case 'card1':{
+                                        print('card1 : $name2');
+                                        outOfGame1=true;
+                                      }
+                                      break;
+                                      case 'card2':{
+                                        print('card2 : $name2');
+                                        outOfGame2=true;
+                                      }
+                                      break;
+                                      case 'card3':{
+                                        print('card3 : $name2');
+                                        outOfGame3=true;
+                                      }
+                                      break;
+                                      case 'card4':{
+                                        print('card4 : $name2');
+                                        outOfGame4=true;
+                                      }
+                                      break;
+                                      case 'card5':{
+                                        print('card5 : $name2');
+                                        outOfGame5=true;
+                                      }
+                                      break;
+                                      defaullt:{
+                                        print('not value');
+                                      }
+                                      break;
+                                    }
+                                  }else{
+                                    print('not Same');
+                                    listOutOfGame.removeLast();
+                                    print(listOutOfGame);
+                                    listOutOfGame.removeLast();
+                                    print(listOutOfGame);
+                                  }
                                 }
                               }
                             }
+                            //print('pressCount5 :$pressCount5');
+                            //print('pressCountSum : $pressCountSum');
+                            //print('changed5 : $changed5');
+                            print('cardContol5 : $cardContol5');
+                            print('listOutOfGame : $listOutOfGame');
                           }
-                          print('pressCount5 :$pressCount5');
-                          print('pressCountSum : $pressCountSum');
-                          print('changed5 : $changed5');
-                          print('cardContol5 : $cardContol5');
                         });
                       },
                       child: Text(label5, style: textStyle),
